@@ -81,7 +81,7 @@ export function UpdateOidcConnectionForm({
               id="display_name"
               name="display_name"
               type="text"
-              placeholder="Acme OIDC"
+              placeholder="Test OIDC"
               defaultValue={connection.displayName}
             />
             <p className="text-sm text-muted-foreground">

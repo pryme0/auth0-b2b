@@ -65,12 +65,12 @@ export function CreateOidcConnectionForm({ domainVerificationToken }: Props) {
               id="display_name"
               name="display_name"
               type="text"
-              placeholder="Acme OIDC"
+              placeholder="Test OIDC"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
             <p className="text-sm text-muted-foreground">
-              Identifier: <Code>{slugify(name || "Acme OIDC")}</Code>
+              Identifier: <Code>{slugify(name || "Test OIDC")}</Code>
             </p>
           </div>
 

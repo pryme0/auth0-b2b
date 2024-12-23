@@ -72,12 +72,12 @@ export function CreateSamlConnectionForm({ domainVerificationToken }: Props) {
               id="display_name"
               name="display_name"
               type="text"
-              placeholder="Acme SAML"
+              placeholder="Test SAML"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
             <p className="text-sm text-muted-foreground">
-              Identifier: <Code>{slugify(name || "Acme SAML")}</Code>
+              Identifier: <Code>{slugify(name || "Test SAML")}</Code>
             </p>
           </div>
 

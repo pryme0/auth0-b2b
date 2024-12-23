@@ -1,10 +1,9 @@
+import Link from "next/link"
 import { Label } from "@radix-ui/react-label"
 
 import { appClient, managementClient } from "@/lib/auth0"
+import { Button } from "@/components/ui/button" // Assuming Button is a UI component
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { PageHeader } from "@/components/page-header"
-
-import { DisplayNameForm } from "./organization/general/display-name-form"
 
 export default async function DashboardHome() {
   const session = await appClient.getSession()
@@ -13,50 +12,71 @@ export default async function DashboardHome() {
     id: session!.user.org_id,
   })
 
-  console.log({ session })
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#f0f8ff]">
       {/* Main container with flex for centering */}
-      <div className="flex w-full max-w-[500px] flex-col items-center gap-6 p-6">
+      <div className="flex w-full max-w-[800px] flex-col items-center gap-8 p-8">
         {/* Card container with centered content */}
-        <Card className="w-full border-none bg-[#e0f7fa] shadow-none">
+        <Card className="w-full rounded-lg border-none bg-[#e0f7fa] shadow-lg">
           <CardHeader>
-            <CardTitle className="text-blue-600">
+            <CardTitle className="text-2xl font-semibold text-gray-600">
               Organization Details
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid gap-6">
-            <div className="grid w-full max-w-sm items-start gap-2">
-              <Label className="text-blue-600">Display Name</Label>
+          <CardContent className="grid grid-cols-2 gap-6">
+            {/* Display Name and Organization Name */}
+            <div className="flex flex-col items-start gap-2">
+              <Label className="text-gray-600">Display Name</Label>
               <p className="text-lg font-semibold text-gray-800">
                 {org.display_name || "N/A"}
               </p>
             </div>
 
-            <div className="grid w-full max-w-sm items-start gap-2">
-              <Label className="text-blue-600">Organization Name</Label>
+            <div className="flex flex-col items-start gap-2">
+              <Label className="text-gray-600">Organization Name</Label>
               <p className="text-lg font-semibold text-gray-800">
                 {org.name || "N/A"}
               </p>
             </div>
 
-            <div className="grid w-full max-w-sm items-start gap-2">
-              <Label className="text-blue-600">User name</Label>
+            {/* User Name and Email */}
+            <div className="flex flex-col items-start gap-2">
+              <Label className="text-gray-600">User Name</Label>
               <p className="text-lg font-semibold text-gray-800">
                 {session?.user.name || "N/A"}
               </p>
             </div>
 
-            <div className="grid w-full max-w-sm items-start gap-2">
-              <Label className="text-blue-600"> Email</Label>
+            <div className="flex flex-col items-start gap-2">
+              <Label className="text-gray-600">Email</Label>
               <p className="text-lg font-semibold text-gray-800">
                 {session?.user.email || "N/A"}
               </p>
             </div>
           </CardContent>
         </Card>
+
+        <Link href="/dashboard/organization/sso" passHref>
+          <Button>Configure SSO</Button>
+        </Link>
       </div>
     </div>
+  )
+}
+
+function ConfigureSSOButton() {
+  const handleClick = (e) => {
+    e.preventDefault()
+    console.log("Clicked")
+    window.location.href = "/organization/sso"
+  }
+
+  return (
+    <Button
+      className="mt-6 w-full max-w-[300px] bg-blue-600 text-white hover:bg-blue-700"
+      onClick={handleClick}
+    >
+      Configure SSO
+    </Button>
   )
 }

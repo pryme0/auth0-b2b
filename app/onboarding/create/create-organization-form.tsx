@@ -45,7 +45,7 @@ export function CreateOrganizationForm() {
           <Input
             id="organization_name"
             name="organization_name"
-            placeholder="Acme Corp"
+            placeholder="Test Corp"
             type="text"
             autoCapitalize="none"
             autoComplete="off"
@@ -55,7 +55,7 @@ export function CreateOrganizationForm() {
             onChange={(e) => setName(e.target.value)}
           />
           <p className="text-sm text-muted-foreground">
-            Slug: <Code>{slugify(name || "Acme Corp")}</Code>
+            Slug: <Code>{slugify(name || "Test Corp")}</Code>
           </p>
         </div>
         <SubmitButton>Create Organization</SubmitButton>

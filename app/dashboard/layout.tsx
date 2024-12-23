@@ -1,14 +1,9 @@
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { UserProvider } from "@auth0/nextjs-auth0/client"
-import { SettingsIcon } from "lucide-react"
 
 import { appClient, managementClient } from "@/lib/auth0"
-import { Button } from "@/components/ui/button"
-import { Auth0Logo } from "@/components/auth0-logo"
-import { ModeToggle } from "@/components/mode-toggle"
 import { OrganizationSwitcher } from "@/components/organization-switcher"
-import { UserNav } from "@/components/user-nav"
 
 export default async function DashboardLayout({
   children,
@@ -51,16 +46,7 @@ export default async function DashboardLayout({
           >
             Home
           </Link>
-        </div>
-
-        <div className="flex flex-row gap-x-4">
-          <Button variant="ghost" asChild className="px-2 py-2">
-            <Link href="/dashboard/organization/general">
-              <SettingsIcon className="h-[1.2rem] w-[1.2rem]" />
-            </Link>
-          </Button>
-          <UserNav />
-        </div>
+        </div>{" "}
       </nav>
 
       <main className="mx-auto grid min-h-[calc(100svh-164px)] max-w-7xl px-2 sm:px-8 lg:py-6">
